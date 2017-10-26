@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">SmartKitchen</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="button_diaria">Diaria</string>
+    <string name="button_nuevas">Nuevas</string>
+    <string name="button_top">Top</string>
+    <string name="barra_buscar">Buscar</string>
+</resources>
