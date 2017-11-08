@@ -2,12 +2,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.smartkitchen.smartkitchen.RecetasDiariasFragment">
+    tools:context="com.smartkitchen.smartkitchen.ListarComidasFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ListView
+        android:id="@+id/Listar_comidas"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment_3" />
+        android:text="@string/hello_blank_fragment" />
 
 </FrameLayout>

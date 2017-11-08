@@ -6,13 +6,15 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+
 public class MainActivity extends AppCompatActivity
         implements AderezoFragment.OnFragmentInteractionListener,
         PlatosComidaFragment.OnFragmentInteractionListener,
         RecetaFragment.OnFragmentInteractionListener,
         RecetasDiariasFragment.OnFragmentInteractionListener,
         TopFragment.OnFragmentInteractionListener,
-        NuevasFragment.OnFragmentInteractionListener
+        NuevasFragment.OnFragmentInteractionListener,
+        ListarComidasFragment.OnFragmentInteractionListener
 
     {
 
@@ -30,7 +32,7 @@ public class MainActivity extends AppCompatActivity
 
                 RecetasDiariasFragment fragment = new RecetasDiariasFragment();
                 getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.content_main,null)
+                        .replace(R.id.content_main,fragment)
                         .commit();
 
             }
@@ -42,7 +44,7 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View v) {
                 NuevasFragment fragment = new NuevasFragment();
                 getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.content_main,null)
+                        .replace(R.id.content_main,fragment)
                         .commit();
             }
         });
@@ -55,7 +57,7 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View v) {
                 TopFragment fragment = new TopFragment();
                 getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.content_main,null)
+                        .replace(R.id.content_main,fragment)
                         .commit();
             }
         });
