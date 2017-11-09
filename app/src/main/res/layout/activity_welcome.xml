@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/smart_kitchen_login00"
+    tools:context="com.smartkitchen.smartkitchen.WelcomeActivity">
+
+
+    <Button
+        android:id="@+id/login_welcome"
+        style="@style/Base.TextAppearance.AppCompat.Widget.Button.Colored"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/action_sign_in"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="406dp"
+        tools:ignore="MissingConstraints" />
+
+
+</android.support.constraint.ConstraintLayout>

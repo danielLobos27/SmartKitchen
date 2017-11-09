@@ -2,5 +2,9 @@
 <resources>
     <color name="colorPrimary">#1995a4</color>
     <color name="colorPrimaryDark">#025964</color>
+    <color name="colorPrimaryLight">#9f02afc4</color>
     <color name="colorAccent">#ff4081</color>
+    <color name="colorWhite">#ffffff</color>
+
+    <color name="black_overlay">#66000000</color>
 </resources>
