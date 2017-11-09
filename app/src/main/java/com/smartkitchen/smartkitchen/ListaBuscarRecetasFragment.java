@@ -4,9 +4,15 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
+import java.util.ArrayList;
 
 
 /**
@@ -31,6 +37,15 @@ public class ListaBuscarRecetasFragment extends Fragment {
 
     private String receta;
     public void setReceta(String receta){this.receta=receta;}
+
+    ListView mListView,mListViewIngredientes;
+
+    ArrayList<String> comidas = new ArrayList<>();
+
+    ArrayList<String> ingredientes = new ArrayList<>();
+
+
+    private View myFragmentView;
 
     public ListaBuscarRecetasFragment() {
         // Required empty public constructor
@@ -67,7 +82,46 @@ public class ListaBuscarRecetasFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_lista_buscar_recetas, container, false);
+        myFragmentView=inflater.inflate(R.layout.fragment_lista_buscar_recetas, container, false);
+
+
+        mListView=(ListView)myFragmentView.findViewById(R.id.Listar_Recetas);
+        mListView=(ListView)myFragmentView.findViewById(R.id.Listar_ingredientes);
+
+        comidas.add("pollo "+receta);
+        comidas.add("carne "+receta);
+        comidas.add("fideos "+receta);
+        comidas.add("arroz "+receta);
+
+        ingredientes.add("palta");
+        ingredientes.add("tomate");
+        ingredientes.add("choclo");
+        //ingredientes.add(receta);
+
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_list_item_1,comidas);
+
+        ArrayAdapter<String> adapterIngredientes = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_list_item_1,ingredientes);
+
+        mListView.setAdapter(adapter);
+
+        mListViewIngredientes.setAdapter(adapterIngredientes);
+
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                AderezoFragment fragment = new AderezoFragment();
+                FragmentTransaction fragmentTransaction;
+                fragmentTransaction=getFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.content_main,fragment);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+
+            }
+        });
+
+        return myFragmentView;
     }
 
     // TODO: Rename method, update argument and hook method into UI event

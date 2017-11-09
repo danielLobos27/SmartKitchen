@@ -47,7 +47,6 @@ public class ListarComidasFragment extends Fragment {
 
     ArrayList<String> comidas = new ArrayList<>();
 
-    //LocalAdapter adapter;
 
     private View myFragmentView;
 
