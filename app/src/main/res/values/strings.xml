@@ -10,4 +10,5 @@
     <string name="button_nuevas">Nuevas</string>
     <string name="button_top">Top</string>
     <string name="barra_buscar">Buscar</string>
+    <string name="error">Error</string>
 </resources>

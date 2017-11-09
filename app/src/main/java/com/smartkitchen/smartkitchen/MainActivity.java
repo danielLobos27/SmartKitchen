@@ -3,34 +3,54 @@ package com.smartkitchen.smartkitchen;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
 
 
 public class MainActivity extends AppCompatActivity
         implements AderezoFragment.OnFragmentInteractionListener,
         PlatosComidaFragment.OnFragmentInteractionListener,
         RecetaFragment.OnFragmentInteractionListener,
-        RecetasDiariasFragment.OnFragmentInteractionListener,
-        TopFragment.OnFragmentInteractionListener,
-        NuevasFragment.OnFragmentInteractionListener,
-        ListarComidasFragment.OnFragmentInteractionListener
+        ListarComidasFragment.OnFragmentInteractionListener,
+        ListaBuscarRecetasFragment.OnFragmentInteractionListener
 
     {
 
     Button button_diaria,button_nuevas, button_top;
+
+    EditText editText;
+    ImageView imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        ListarComidasFragment fragment = new ListarComidasFragment();
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.content_main,fragment)
+                .commit();
+
+        editText = (EditText)findViewById(R.id.editTextBuscar);
+
+        imageView = (ImageView)findViewById(R.id.imagenBuscar);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                evaluarBusqueda();
+            }
+        });
+
         button_diaria = (Button)findViewById(R.id.buttonDiaria);
         button_diaria.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                RecetasDiariasFragment fragment = new RecetasDiariasFragment();
+                ListarComidasFragment fragment = new ListarComidasFragment();
+                fragment.setReceta("Diaria");
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.content_main,fragment)
                         .commit();
@@ -42,7 +62,8 @@ public class MainActivity extends AppCompatActivity
         button_nuevas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                NuevasFragment fragment = new NuevasFragment();
+                ListarComidasFragment fragment = new ListarComidasFragment();
+                fragment.setReceta(getString(R.string.button_nuevas));
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.content_main,fragment)
                         .commit();
@@ -55,7 +76,8 @@ public class MainActivity extends AppCompatActivity
         button_top.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TopFragment fragment = new TopFragment();
+                ListarComidasFragment fragment = new ListarComidasFragment();
+                fragment.setReceta(getString(R.string.button_top));
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.content_main,fragment)
                         .commit();
@@ -67,6 +89,27 @@ public class MainActivity extends AppCompatActivity
 
         @Override
         public void onFragmentInteraction(Uri uri) {
+
+        }
+
+        public void evaluarBusqueda(){
+            if(TextUtils.isEmpty(editText.getText())){
+                editText.setError(getResources().getString(R.string.error));
+            }
+            else{
+                buscar();
+            }
+
+        }
+
+        public void buscar(){
+            String ingrediente = editText.getText().toString().trim();
+
+            ListaBuscarRecetasFragment fragment = new ListaBuscarRecetasFragment();
+            fragment.setReceta(getString(R.string.button_nuevas));
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.content_main,fragment)
+                    .commit();
 
         }
     }

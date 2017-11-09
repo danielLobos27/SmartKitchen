@@ -3,10 +3,21 @@ package com.smartkitchen.smartkitchen;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -28,6 +39,18 @@ public class ListarComidasFragment extends Fragment {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+
+    private String receta;
+    public void setReceta(String receta){this.receta=receta;}
+
+    ListView mListView;
+
+    ArrayList<String> comidas = new ArrayList<>();
+
+    //LocalAdapter adapter;
+
+    private View myFragmentView;
+
 
     public ListarComidasFragment() {
         // Required empty public constructor
@@ -63,8 +86,35 @@ public class ListarComidasFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_listar_comidas, container, false);
+        // Inflate the layout for this
+        myFragmentView=inflater.inflate(R.layout.fragment_listar_comidas, container, false);
+
+        mListView=(ListView)myFragmentView.findViewById(R.id.Listar_comidas);
+
+        comidas.add("pollo "+receta);
+        comidas.add("carne "+receta);
+        comidas.add("fideos "+receta);
+        comidas.add("arroz "+receta);
+
+        ArrayAdapter<String>adapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_list_item_1,comidas);
+
+        mListView.setAdapter(adapter);
+
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                AderezoFragment fragment = new AderezoFragment();
+                FragmentTransaction fragmentTransaction;
+                fragmentTransaction=getFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.content_main,fragment);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+
+            }
+        });
+
+        return myFragmentView;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -105,4 +155,42 @@ public class ListarComidasFragment extends Fragment {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
+
+   // class LocalAdapter extends ArrayAdapter<String>{
+     //   public LocalAdapter (Context context, int resource){
+       //     super(context, resource);
+       // }
+
+   // }
+
+    /*private class MyAdapter extends ArrayAdapter<String>{
+
+        public MyAdapter(Context context, int resource, List<String> objects){
+            super(context, resource, objects);
+
+        }
+
+        public View getView(int position, @Nullable View fila, @NonNull ViewGroup parent) {
+
+            LayoutInflater mInflater = (LayoutInflater) getContext()
+                    .getSystemService(getActivity().LAYOUT_INFLATER_SERVICE);
+
+            if (fila == null) {
+                fila = mInflater.inflate(R.layout.custom_row, null);
+            }
+
+            ImageView imageView = (ImageView) fila.findViewById(R.id.comidaImageView);
+            TextView textView = (TextView) fila.findViewById(R.id.nombreComidaTextView);
+
+            String misComidas = getItem(position);
+            textView.setText(misComidas);
+
+            //imageView.setImageDrawable(null);
+
+            return fila;
+        }
+
+
+    }*/
+
 }
