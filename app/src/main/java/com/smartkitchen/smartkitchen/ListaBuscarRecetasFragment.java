@@ -96,16 +96,16 @@ public class ListaBuscarRecetasFragment extends Fragment {
         ingredientes.add("palta");
         ingredientes.add("tomate");
         ingredientes.add("choclo");
-        //ingredientes.add(receta);
+        ingredientes.add(receta);
 
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_list_item_1,comidas);
 
-        ArrayAdapter<String> adapterIngredientes = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_list_item_1,ingredientes);
+        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_list_item_1,ingredientes);
 
         mListView.setAdapter(adapter);
 
-        mListViewIngredientes.setAdapter(adapterIngredientes);
+        mListViewIngredientes.setAdapter(adapter2);
 
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
