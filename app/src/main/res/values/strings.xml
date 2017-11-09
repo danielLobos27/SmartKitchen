@@ -11,4 +11,11 @@
     <string name="button_top">Top</string>
     <string name="barra_buscar">Buscar</string>
     <string name="error">Error</string>
+
+    <!-- for dialog messages -->
+    <string name="title_dialog">Por implementar</string>
+    <string name="message_dialog">Esta funcionalidad todavía no se encuentra implementada, en UmpaLumpaLabs están trabajando para usted</string>
+    <string name="accept_button">Aceptar</string>
+    <string name="cancel_button">Cancelar</string>
+
 </resources>

@@ -1,4 +1,4 @@
-package com.smartkitchen.smartkitchen;
+package com.smartkitchen.smartkitchen.fragments;
 
 import android.content.Context;
 import android.net.Uri;
@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
+import com.smartkitchen.smartkitchen.R;
 
 import java.util.ArrayList;
 
@@ -105,7 +107,7 @@ public class ListaBuscarRecetasFragment extends Fragment {
 
         mListView.setAdapter(adapter);
 
-        mListViewIngredientes.setAdapter(adapter2);
+        //TODO next list mListViewIngredientes.setAdapter(adapter2);
 
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
