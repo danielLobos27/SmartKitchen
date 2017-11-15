@@ -41,4 +41,7 @@
     <!-- welcome text -->
     <string name="welcome_text">¡SmartKitchen tu nueva forma de cocinar!</string>
 
+    <!-- for Smart Assistant -->
+    <string name="recipe_tittle">Recipe title</string>
+
 </resources>

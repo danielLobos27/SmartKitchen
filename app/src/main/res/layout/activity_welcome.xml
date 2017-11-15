@@ -7,7 +7,7 @@
     android:background="@drawable/smart_kitchen_login00"
     android:orientation="vertical"
     android:layout_gravity="center"
-    tools:context="com.smartkitchen.smartkitchen.WelcomeActivity">
+    tools:context="com.smartkitchen.smartkitchen.main.WelcomeActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
