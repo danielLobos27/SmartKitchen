@@ -3,6 +3,8 @@ package com.smartkitchen.smartkitchen.fragments;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
@@ -10,11 +12,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.smartkitchen.smartkitchen.R;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 
 /**
@@ -42,11 +48,11 @@ public class ListarComidasFragment extends Fragment {
 
     ListView mListView;
 
-    ArrayList<String> comidas = new ArrayList<>();
+    ArrayList<Comida> comidas = new ArrayList<Comida>();
 
+    MyAdapter mAdapter;
 
     private View myFragmentView;
-
 
     public ListarComidasFragment() {
         // Required empty public constructor
@@ -87,14 +93,13 @@ public class ListarComidasFragment extends Fragment {
 
         mListView=(ListView)myFragmentView.findViewById(R.id.Listar_comidas);
 
-        comidas.add("pollo "+receta);
-        comidas.add("carne "+receta);
-        comidas.add("fideos "+receta);
-        comidas.add("arroz "+receta);
+        comidas.add( new Comida("pollo "+receta,R.drawable.r001_recipe_01));
+        comidas.add( new Comida("carne "+receta,R.drawable.r002_recipe_00));
+        comidas.add( new Comida("fideos "+receta,R.drawable.r003_recipes));
+        comidas.add( new Comida("arroz "+receta,R.drawable.r004_recipes_00));
 
-        ArrayAdapter<String>adapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_list_item_1,comidas);
-
-        mListView.setAdapter(adapter);
+        mAdapter = new MyAdapter(getActivity(),R.layout.custom_row,comidas);
+        mListView.setAdapter(mAdapter);
 
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -152,16 +157,44 @@ public class ListarComidasFragment extends Fragment {
         void onFragmentInteraction(Uri uri);
     }
 
-   // class LocalAdapter extends ArrayAdapter<String>{
-     //   public LocalAdapter (Context context, int resource){
-       //     super(context, resource);
-       // }
+    class LocalAdapter extends ArrayAdapter<String>{
+        public LocalAdapter (Context context, int resource){
+            super(context, resource);
+        }
 
-   // }
+    }
 
-    /*private class MyAdapter extends ArrayAdapter<String>{
+    private class Comida{
 
-        public MyAdapter(Context context, int resource, List<String> objects){
+        public String comida;
+
+        public Comida(String comida, int imagenComida) {
+            this.comida = comida;
+            this.imagenComida = imagenComida;
+        }
+
+        public String getComida() {
+            return comida;
+        }
+
+        public void setComida(String comida) {
+            this.comida = comida;
+        }
+
+        public int imagenComida;
+
+        public int getImagenComida() {
+            return imagenComida;
+        }
+
+        public void setImagenComida(int imagenComida) {
+            this.imagenComida = imagenComida;
+        }
+    }
+
+    private class MyAdapter extends ArrayAdapter<Comida>{
+
+        public MyAdapter(Context context, int resource, List<Comida> objects){
             super(context, resource, objects);
 
         }
@@ -178,15 +211,21 @@ public class ListarComidasFragment extends Fragment {
             ImageView imageView = (ImageView) fila.findViewById(R.id.comidaImageView);
             TextView textView = (TextView) fila.findViewById(R.id.nombreComidaTextView);
 
-            String misComidas = getItem(position);
-            textView.setText(misComidas);
+            Comida misComidas = getItem(position);
+            textView.setText(misComidas.comida);
 
-            //imageView.setImageDrawable(null);
+            //int id = getResources().getIdentifier("SmartKitchen:drawable/pomodoro_00.png",null,null);
+
+            //imageView.setImageResource(id);
+
+            imageView.setImageResource(misComidas.imagenComida);
 
             return fila;
         }
 
 
-    }*/
+    }
+
+
 
 }
