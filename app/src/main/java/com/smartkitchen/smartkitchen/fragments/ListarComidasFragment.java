@@ -93,10 +93,17 @@ public class ListarComidasFragment extends Fragment {
 
         mListView=(ListView)myFragmentView.findViewById(R.id.Listar_comidas);
 
-        comidas.add( new Comida("pollo "+receta,R.drawable.r001_recipe_01));
-        comidas.add( new Comida("carne "+receta,R.drawable.r002_recipe_00));
-        comidas.add( new Comida("fideos "+receta,R.drawable.r003_recipes));
-        comidas.add( new Comida("arroz "+receta,R.drawable.r004_recipes_00));
+        comidas.add( new Comida("Hamburguesas de pavo baja en calorías \n\t\t Calorías:220\n\t\t 25 min",R.drawable.hamburguesa_de_pavo_baja_en_calorias));
+        comidas.add( new Comida("Atún a la plancha con verduras \n\t\t Calorías:366 \n\t\t 50 min",R.drawable.atun_a_la_plancha_con_verduras));
+        comidas.add( new Comida("Mango con canela \n\t\t Calorías:117 \n\t\t 25 minutos",R.drawable.mango_con_canela));
+        comidas.add( new Comida("Quesadillas de jamón y queso\n\t\t Calorías:270\n\t\t 25 minutos",R.drawable.quesadilla_de_jamon_y_queso));
+        comidas.add( new Comida("Ensalada caprese\n\t\t Calorías:178\n\t\t 10 minutos",R.drawable.ensalada_caprese));
+        comidas.add( new Comida("Ensalada tropical\n\t\t Calorías:210\n\t\t 15 minutos",R.drawable.ensalada_tropical));
+        comidas.add( new Comida("Ensalada de naranja con atún\n\t\t Calorías:226\n\t\t 15 minutos",R.drawable.ensalada_naranja_con_atun));
+        comidas.add( new Comida("Helado de plátano, chocolate y nueces\n\t\t Calorías:270\n\t\t 3 horas",R.drawable.helado_de_platano_chocolate_y_nueces));
+        comidas.add( new Comida("Minipizzas de crema de queso y fruta\n\t\t Calorías:70\n\t\t 15 minutos",R.drawable.minipizza_de_crema_de_queso_y_frutas));
+
+
 
         mAdapter = new MyAdapter(getActivity(),R.layout.custom_row,comidas);
         mListView.setAdapter(mAdapter);

@@ -34,7 +34,7 @@ public class WelcomeActivity extends AppCompatActivity implements View.OnClickLi
                 startActivity(intent);
                 break;
             case R.id.register_welcome:
-                intent = new Intent(WelcomeActivity.this, SmartAssistantActivity.class);
+                intent = new Intent(WelcomeActivity.this, MainActivity.class);
                 startActivity(intent);
                 break;
             default:
