@@ -1,6 +1,7 @@
 package com.smartkitchen.smartkitchen.fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -16,8 +17,13 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.smartkitchen.smartkitchen.EDA.Recipe;
+import com.smartkitchen.smartkitchen.HardCodeGenerator.RecipeGenerator;
 import com.smartkitchen.smartkitchen.R;
+import com.smartkitchen.smartkitchen.assistants.SmartAssistantActivity;
+import com.smartkitchen.smartkitchen.services.SmartKitchenService;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -53,6 +59,8 @@ public class ListarComidasFragment extends Fragment {
     MyAdapter mAdapter;
 
     private View myFragmentView;
+
+    private ArrayList<Recipe> recipesList;
 
     public ListarComidasFragment() {
         // Required empty public constructor
@@ -110,6 +118,7 @@ public class ListarComidasFragment extends Fragment {
         comidas.add( new Comida("Risotto a la naranja", "Calorías:220", "40 minutos",R.drawable.risotto_a_la_naranja));
         comidas.add( new Comida("Tarta de queso con cerezas", "Calorías:490", "12 horas 35 minutos",R.drawable.tarta_de_queso_con_cerezas));
 
+        recipesList = RecipeGenerator.generateAndGetRecipes();
 
         mAdapter = new MyAdapter(getActivity(),R.layout.custom_row,comidas);
         mListView.setAdapter(mAdapter);
@@ -117,14 +126,9 @@ public class ListarComidasFragment extends Fragment {
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                AderezoFragment fragment = new AderezoFragment();
-                FragmentTransaction fragmentTransaction;
-                fragmentTransaction=getFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.content_main,fragment);
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
-
+                Intent intent =  new Intent(parent.getContext(), SmartAssistantActivity.class);
+                intent.putExtra("recipe", recipesList.get(0));
+                startActivity(intent);
             }
         });
 

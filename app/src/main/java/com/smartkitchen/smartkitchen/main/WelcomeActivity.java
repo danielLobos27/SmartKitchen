@@ -6,8 +6,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.smartkitchen.smartkitchen.EDA.Recipe;
+import com.smartkitchen.smartkitchen.HardCodeGenerator.RecipeGenerator;
 import com.smartkitchen.smartkitchen.R;
 import com.smartkitchen.smartkitchen.assistants.SmartAssistantActivity;
+import com.smartkitchen.smartkitchen.services.SmartKitchenService;
+
+import java.io.Serializable;
 
 public class WelcomeActivity extends AppCompatActivity implements View.OnClickListener{
 
