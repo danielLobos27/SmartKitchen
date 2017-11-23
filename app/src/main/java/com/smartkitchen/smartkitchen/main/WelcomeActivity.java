@@ -40,6 +40,7 @@ public class WelcomeActivity extends AppCompatActivity implements View.OnClickLi
                 break;
             case R.id.register_welcome:
                 intent = new Intent(WelcomeActivity.this, MainActivity.class);
+                //TODO service background
                 startActivity(intent);
                 break;
             default:
