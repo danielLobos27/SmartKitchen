@@ -1,11 +1,8 @@
 package com.smartkitchen.smartkitchen.fragments;
 
 import android.content.Context;
-import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
@@ -13,20 +10,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
 
-import com.smartkitchen.smartkitchen.EDA.Recipe;
-import com.smartkitchen.smartkitchen.HardCodeGenerator.RecipeGenerator;
 import com.smartkitchen.smartkitchen.R;
-import com.smartkitchen.smartkitchen.assistants.SmartAssistantActivity;
-import com.smartkitchen.smartkitchen.services.SmartKitchenService;
 
-import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 
 /**
@@ -54,13 +42,11 @@ public class ListarComidasFragment extends Fragment {
 
     ListView mListView;
 
-    ArrayList<Comida> comidas = new ArrayList<Comida>();
+    ArrayList<String> comidas = new ArrayList<>();
 
-    MyAdapter mAdapter;
 
     private View myFragmentView;
 
-    private ArrayList<Recipe> recipesList;
 
     public ListarComidasFragment() {
         // Required empty public constructor
@@ -101,34 +87,26 @@ public class ListarComidasFragment extends Fragment {
 
         mListView=(ListView)myFragmentView.findViewById(R.id.Listar_comidas);
 
-        comidas.add( new Comida("Hamburguesas de pavo baja en calorías", "Calorías:220","25 min",R.drawable.hamburguesa_de_pavo_baja_en_calorias));
-        comidas.add( new Comida("Atún a la plancha con verduras", "Calorías:366 ","50 min",R.drawable.atun_a_la_plancha_con_verduras));
-        comidas.add( new Comida("Mango con canela","Calorías:117","25 minutos",R.drawable.mango_con_canela));
-        comidas.add( new Comida("Quesadillas de jamón y queso", "Calorías:270","25 minutos",R.drawable.quesadilla_de_jamon_y_queso));
-        comidas.add( new Comida("Ensalada caprese", "Calorías:178","10 minutos",R.drawable.ensalada_caprese));
-        comidas.add( new Comida("Ensalada tropical", "Calorías:210", "15 minutos",R.drawable.ensalada_tropical));
-        comidas.add( new Comida("Ensalada de naranja con atún", "Calorías:226", "15 minutos",R.drawable.ensalada_naranja_con_atun));
-        comidas.add( new Comida("Helado de plátano, chocolate y nueces", "Calorías:270", "3 horas",R.drawable.helado_de_platano_chocolate_y_nueces));
-        comidas.add( new Comida("Minipizzas de crema de queso y fruta", "Calorías:70", "15 minutos",R.drawable.minipizza_de_crema_de_queso_y_frutas));
-        comidas.add( new Comida("Pollo crujiente con cereales", "Calorías:225", "65 minutos",R.drawable.pollo_crujiente_con_cereales));
-        comidas.add( new Comida("Pollo con almendras", "Calorías:318", "90 minutos",R.drawable.pollo_con_almendras));
-        comidas.add( new Comida("Ensalada de pollo con queso y frutos secos", "Calorías:425", "27 minutos",R.drawable.ensalada_de_pollo_con_queso_y_frutos_secos));
-        comidas.add( new Comida("Arroz cremoso con salmón", "Calorías:325", "40 minutos",R.drawable.arroz_cremoso_con_salmon));
-        comidas.add( new Comida("Berenjena rellena de arroz", "Calorías:294", "50 minutos",R.drawable.berenjenas_rellenas_de_arroz));
-        comidas.add( new Comida("Risotto a la naranja", "Calorías:220", "40 minutos",R.drawable.risotto_a_la_naranja));
-        comidas.add( new Comida("Tarta de queso con cerezas", "Calorías:490", "12 horas 35 minutos",R.drawable.tarta_de_queso_con_cerezas));
+        comidas.add("pollo "+receta);
+        comidas.add("carne "+receta);
+        comidas.add("fideos "+receta);
+        comidas.add("arroz "+receta);
 
-        recipesList = RecipeGenerator.generateAndGetRecipes();
+        ArrayAdapter<String>adapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_list_item_1,comidas);
 
-        mAdapter = new MyAdapter(getActivity(),R.layout.custom_row,comidas);
-        mListView.setAdapter(mAdapter);
+        mListView.setAdapter(adapter);
 
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent =  new Intent(parent.getContext(), SmartAssistantActivity.class);
-                intent.putExtra("recipe", recipesList.get(0));
-                startActivity(intent);
+
+                AderezoFragment fragment = new AderezoFragment();
+                FragmentTransaction fragmentTransaction;
+                fragmentTransaction=getFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.content_main,fragment);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+
             }
         });
 
@@ -174,50 +152,16 @@ public class ListarComidasFragment extends Fragment {
         void onFragmentInteraction(Uri uri);
     }
 
-    class LocalAdapter extends ArrayAdapter<String>{
-        public LocalAdapter (Context context, int resource){
-            super(context, resource);
-        }
+   // class LocalAdapter extends ArrayAdapter<String>{
+     //   public LocalAdapter (Context context, int resource){
+       //     super(context, resource);
+       // }
 
-    }
+   // }
 
-    private class Comida{
+    /*private class MyAdapter extends ArrayAdapter<String>{
 
-        public String comida;
-
-        public String calorias;
-
-        public String tiempoPreparacion;
-
-        public Comida(String comida,String calorias,String tiempoPreparacion, int imagenComida) {
-            this.comida = comida;
-            this.calorias = calorias;
-            this.tiempoPreparacion = tiempoPreparacion;
-            this.imagenComida = imagenComida;
-        }
-
-        public String getComida() {
-            return comida;
-        }
-
-        public void setComida(String comida) {
-            this.comida = comida;
-        }
-
-        public int imagenComida;
-
-        public int getImagenComida() {
-            return imagenComida;
-        }
-
-        public void setImagenComida(int imagenComida) {
-            this.imagenComida = imagenComida;
-        }
-    }
-
-    private class MyAdapter extends ArrayAdapter<Comida>{
-
-        public MyAdapter(Context context, int resource, List<Comida> objects){
+        public MyAdapter(Context context, int resource, List<String> objects){
             super(context, resource, objects);
 
         }
@@ -233,24 +177,16 @@ public class ListarComidasFragment extends Fragment {
 
             ImageView imageView = (ImageView) fila.findViewById(R.id.comidaImageView);
             TextView textView = (TextView) fila.findViewById(R.id.nombreComidaTextView);
-            TextView textView1 = (TextView) fila.findViewById(R.id.cantidadCaloriasTextView);
-            TextView textView2 =(TextView) fila.findViewById(R.id.tiempoDePreparacionTextView);
 
-            Comida misComidas = getItem(position);
-            textView.setText(misComidas.comida);
-            textView1.setText(misComidas.calorias);
-            textView2.setText(misComidas.tiempoPreparacion);
+            String misComidas = getItem(position);
+            textView.setText(misComidas);
 
-
-
-            imageView.setImageResource(misComidas.imagenComida);
+            //imageView.setImageDrawable(null);
 
             return fila;
         }
 
 
-    }
-
-
+    }*/
 
 }
