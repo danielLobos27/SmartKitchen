@@ -2,18 +2,21 @@ package com.smartkitchen.smartkitchen.assistants;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.smartkitchen.smartkitchen.R;
 import com.smartkitchen.smartkitchen.adapter.StepAdapter;
+import com.smartkitchen.smartkitchen.dialog_fragments.MessageDialog;
 
 import java.util.ArrayList;
 
-public class SmartAssistantActivity extends AppCompatActivity {
+public class SmartAssistantActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
     Animation animFadeIn;
     Animation animFadeOut;
     ImageView recipeImage;
@@ -45,6 +48,7 @@ public class SmartAssistantActivity extends AppCompatActivity {
 
         stepAdapter = new StepAdapter(this, R.layout.step_row, steps);
         stepsListView.setAdapter(stepAdapter);
+        stepsListView.setOnItemClickListener(this);
 
 
     }
@@ -78,5 +82,10 @@ public class SmartAssistantActivity extends AppCompatActivity {
                 break;
             }
         }
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        MessageDialog.show(parent.getContext(), "Step onItemClickListener", "Step recipe info: ", position, id);
     }
 }
