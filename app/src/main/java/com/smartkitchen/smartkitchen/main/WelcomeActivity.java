@@ -39,10 +39,8 @@ public class WelcomeActivity extends AppCompatActivity implements View.OnClickLi
                 startActivity(intent);
                 break;
             case R.id.register_welcome:
-                intent = new Intent(WelcomeActivity.this, SmartAssistantActivity.class);
-                intent.putExtra("recipe", (Serializable) RecipeGenerator.generateAndGetRecipes().get(0));
-
-                //startService(new Intent(WelcomeActivity.this, SmartKitchenService.class)); //TODO testing service
+                intent = new Intent(WelcomeActivity.this, MainActivity.class);
+                //TODO service background
                 startActivity(intent);
                 break;
             default:
