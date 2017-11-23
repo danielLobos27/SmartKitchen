@@ -14,23 +14,19 @@
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".main.MainActivity" />
+        <activity android:name=".MainActivity" />
         <activity
-            android:name=".main.LoginActivity"
+            android:name=".LoginActivity"
             android:label="@string/title_activity_login"
-            android:windowSoftInputMode="stateVisible|adjustPan" />
-        <activity android:name=".main.WelcomeActivity">
+            android:windowSoftInputMode="stateVisible|adjustPan">
+        </activity>
+        <activity android:name=".WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".assistants.SmartAssistantActivity" />
-        <activity
-            android:name=".assistants.StepTabbedActivity"
-            android:label="@string/title_activity_step_tabbed"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
