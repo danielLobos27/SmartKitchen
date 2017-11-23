@@ -15,10 +15,10 @@ public class Step implements Serializable{
     private double duration;
     private String waitingTimeType;
     private double waitingTime;
+    private int imagen;
     //TODO add techniques type
 
-
-    public Step(String title, String stepRecipe, String durationType, double duration, String waitingTimeType, double waitingTime) {
+    public Step(String title, String stepRecipe, String durationType, double duration, String waitingTimeType, double waitingTime,int imagen) {
         this.title = title;
         this.ingredientsList = new ArrayList<>();
         this.stepRecipe = stepRecipe;
@@ -26,16 +26,7 @@ public class Step implements Serializable{
         this.duration = duration;
         this.waitingTimeType = waitingTimeType;
         this.waitingTime = waitingTime;
-    }
-
-    public Step(String title, ArrayList<Ingredient> ingredientsList, String stepRecipe, String durationType, double duration, String waitingTimeType, double waitingTime) {
-        this.title = title;
-        this.ingredientsList = ingredientsList;
-        this.stepRecipe = stepRecipe;
-        this.durationType = durationType;
-        this.duration = duration;
-        this.waitingTimeType = waitingTimeType;
-        this.waitingTime = waitingTime;
+        this.imagen = imagen;
     }
 
     public String getTitle() {
@@ -92,5 +83,13 @@ public class Step implements Serializable{
 
     public void setWaitingTime(double waitingTime) {
         this.waitingTime = waitingTime;
+    }
+
+    public int getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(int imagen) {
+        this.imagen = imagen;
     }
 }

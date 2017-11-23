@@ -11,6 +11,7 @@ public class Recipe implements Serializable{
     private String name;
     private ArrayList <Step> stepsList;
     private ArrayList <Ingredient> ingredientsList;
+    private int imagen;
 
     public Recipe(String name) {
         this.name = name;
@@ -18,10 +19,11 @@ public class Recipe implements Serializable{
         this.ingredientsList = new ArrayList<>();
     }
 
-    public Recipe(String name, ArrayList<Step> stepsList, ArrayList<Ingredient> ingredientsList) {
+    public Recipe(String name, ArrayList<Step> stepsList, ArrayList<Ingredient> ingredientsList,int imagen) {
         this.name = name;
         this.stepsList = stepsList;
         this.ingredientsList = ingredientsList;
+        this.imagen = imagen;
     }
 
     public String getName() {
@@ -48,7 +50,16 @@ public class Recipe implements Serializable{
         this.ingredientsList = ingredientList;
     }
 
+    public int getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(int imagen) {
+        this.imagen = imagen;
+    }
+
     public void addIngredient(Ingredient ingredient) {
         this.ingredientsList.add(ingredient);
     }
+
 }

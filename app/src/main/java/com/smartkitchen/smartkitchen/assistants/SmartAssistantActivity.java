@@ -52,6 +52,8 @@ public class SmartAssistantActivity extends AppCompatActivity implements Adapter
 
         recipe = (Recipe) getIntent().getSerializableExtra("recipe");
 
+        recipeImage.setImageResource(recipe.getImagen());
+
         stepAdapter = new StepAdapter(this, R.layout.step_row, recipe.getStepsList());
         stepsListView.setAdapter(stepAdapter);
         stepsListView.setOnItemClickListener(this);
