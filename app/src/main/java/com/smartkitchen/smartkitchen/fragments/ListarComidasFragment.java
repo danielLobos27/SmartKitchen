@@ -93,16 +93,22 @@ public class ListarComidasFragment extends Fragment {
 
         mListView=(ListView)myFragmentView.findViewById(R.id.Listar_comidas);
 
-        comidas.add( new Comida("Hamburguesas de pavo baja en calorías \n\t\t Calorías:220\n\t\t 25 min",R.drawable.hamburguesa_de_pavo_baja_en_calorias));
-        comidas.add( new Comida("Atún a la plancha con verduras \n\t\t Calorías:366 \n\t\t 50 min",R.drawable.atun_a_la_plancha_con_verduras));
-        comidas.add( new Comida("Mango con canela \n\t\t Calorías:117 \n\t\t 25 minutos",R.drawable.mango_con_canela));
-        comidas.add( new Comida("Quesadillas de jamón y queso\n\t\t Calorías:270\n\t\t 25 minutos",R.drawable.quesadilla_de_jamon_y_queso));
-        comidas.add( new Comida("Ensalada caprese\n\t\t Calorías:178\n\t\t 10 minutos",R.drawable.ensalada_caprese));
-        comidas.add( new Comida("Ensalada tropical\n\t\t Calorías:210\n\t\t 15 minutos",R.drawable.ensalada_tropical));
-        comidas.add( new Comida("Ensalada de naranja con atún\n\t\t Calorías:226\n\t\t 15 minutos",R.drawable.ensalada_naranja_con_atun));
-        comidas.add( new Comida("Helado de plátano, chocolate y nueces\n\t\t Calorías:270\n\t\t 3 horas",R.drawable.helado_de_platano_chocolate_y_nueces));
-        comidas.add( new Comida("Minipizzas de crema de queso y fruta\n\t\t Calorías:70\n\t\t 15 minutos",R.drawable.minipizza_de_crema_de_queso_y_frutas));
-
+        comidas.add( new Comida("Hamburguesas de pavo baja en calorías", "Calorías:220","25 min",R.drawable.hamburguesa_de_pavo_baja_en_calorias));
+        comidas.add( new Comida("Atún a la plancha con verduras", "Calorías:366 ","50 min",R.drawable.atun_a_la_plancha_con_verduras));
+        comidas.add( new Comida("Mango con canela","Calorías:117","25 minutos",R.drawable.mango_con_canela));
+        comidas.add( new Comida("Quesadillas de jamón y queso", "Calorías:270","25 minutos",R.drawable.quesadilla_de_jamon_y_queso));
+        comidas.add( new Comida("Ensalada caprese", "Calorías:178","10 minutos",R.drawable.ensalada_caprese));
+        comidas.add( new Comida("Ensalada tropical", "Calorías:210", "15 minutos",R.drawable.ensalada_tropical));
+        comidas.add( new Comida("Ensalada de naranja con atún", "Calorías:226", "15 minutos",R.drawable.ensalada_naranja_con_atun));
+        comidas.add( new Comida("Helado de plátano, chocolate y nueces", "Calorías:270", "3 horas",R.drawable.helado_de_platano_chocolate_y_nueces));
+        comidas.add( new Comida("Minipizzas de crema de queso y fruta", "Calorías:70", "15 minutos",R.drawable.minipizza_de_crema_de_queso_y_frutas));
+        comidas.add( new Comida("Pollo crujiente con cereales", "Calorías:225", "65 minutos",R.drawable.pollo_crujiente_con_cereales));
+        comidas.add( new Comida("Pollo con almendras", "Calorías:318", "90 minutos",R.drawable.pollo_con_almendras));
+        comidas.add( new Comida("Ensalada de pollo con queso y frutos secos", "Calorías:425", "27 minutos",R.drawable.ensalada_de_pollo_con_queso_y_frutos_secos));
+        comidas.add( new Comida("Arroz cremoso con salmón", "Calorías:325", "40 minutos",R.drawable.arroz_cremoso_con_salmon));
+        comidas.add( new Comida("Berenjena rellena de arroz", "Calorías:294", "50 minutos",R.drawable.berenjenas_rellenas_de_arroz));
+        comidas.add( new Comida("Risotto a la naranja", "Calorías:220", "40 minutos",R.drawable.risotto_a_la_naranja));
+        comidas.add( new Comida("Tarta de queso con cerezas", "Calorías:490", "12 horas 35 minutos",R.drawable.tarta_de_queso_con_cerezas));
 
 
         mAdapter = new MyAdapter(getActivity(),R.layout.custom_row,comidas);
@@ -175,8 +181,14 @@ public class ListarComidasFragment extends Fragment {
 
         public String comida;
 
-        public Comida(String comida, int imagenComida) {
+        public String calorias;
+
+        public String tiempoPreparacion;
+
+        public Comida(String comida,String calorias,String tiempoPreparacion, int imagenComida) {
             this.comida = comida;
+            this.calorias = calorias;
+            this.tiempoPreparacion = tiempoPreparacion;
             this.imagenComida = imagenComida;
         }
 
@@ -217,13 +229,15 @@ public class ListarComidasFragment extends Fragment {
 
             ImageView imageView = (ImageView) fila.findViewById(R.id.comidaImageView);
             TextView textView = (TextView) fila.findViewById(R.id.nombreComidaTextView);
+            TextView textView1 = (TextView) fila.findViewById(R.id.cantidadCaloriasTextView);
+            TextView textView2 =(TextView) fila.findViewById(R.id.tiempoDePreparacionTextView);
 
             Comida misComidas = getItem(position);
             textView.setText(misComidas.comida);
+            textView1.setText(misComidas.calorias);
+            textView2.setText(misComidas.tiempoPreparacion);
 
-            //int id = getResources().getIdentifier("SmartKitchen:drawable/pomodoro_00.png",null,null);
 
-            //imageView.setImageResource(id);
 
             imageView.setImageResource(misComidas.imagenComida);
 
