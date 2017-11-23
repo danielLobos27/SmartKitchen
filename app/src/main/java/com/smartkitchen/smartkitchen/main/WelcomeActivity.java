@@ -10,6 +10,7 @@ import com.smartkitchen.smartkitchen.EDA.Recipe;
 import com.smartkitchen.smartkitchen.HardCodeGenerator.RecipeGenerator;
 import com.smartkitchen.smartkitchen.R;
 import com.smartkitchen.smartkitchen.assistants.SmartAssistantActivity;
+import com.smartkitchen.smartkitchen.services.SmartKitchenService;
 
 import java.io.Serializable;
 
@@ -40,6 +41,8 @@ public class WelcomeActivity extends AppCompatActivity implements View.OnClickLi
             case R.id.register_welcome:
                 intent = new Intent(WelcomeActivity.this, SmartAssistantActivity.class);
                 intent.putExtra("recipe", (Serializable) RecipeGenerator.generateAndGetRecipes().get(0));
+
+                //startService(new Intent(WelcomeActivity.this, SmartKitchenService.class)); //TODO testing service
                 startActivity(intent);
                 break;
             default:
