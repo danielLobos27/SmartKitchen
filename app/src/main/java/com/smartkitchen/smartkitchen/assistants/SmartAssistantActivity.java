@@ -1,5 +1,6 @@
 package com.smartkitchen.smartkitchen.assistants;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -10,10 +11,15 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.smartkitchen.smartkitchen.EDA.Recipe;
+import com.smartkitchen.smartkitchen.EDA.Step;
 import com.smartkitchen.smartkitchen.R;
 import com.smartkitchen.smartkitchen.adapter.StepAdapter;
 import com.smartkitchen.smartkitchen.dialog_fragments.MessageDialog;
 
+import org.w3c.dom.Text;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class SmartAssistantActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
@@ -24,7 +30,7 @@ public class SmartAssistantActivity extends AppCompatActivity implements Adapter
 
     ListView stepsListView;
     StepAdapter stepAdapter;
-    ArrayList<String> steps = new ArrayList<>();
+    Recipe recipe;
 
 
     @Override
@@ -44,48 +50,21 @@ public class SmartAssistantActivity extends AppCompatActivity implements Adapter
         recipeTitle.startAnimation(animFadeIn);
         stepsListView.startAnimation(animFadeIn);
 
-        chargeStepsRecipe(1);
+        recipe = (Recipe) getIntent().getSerializableExtra("recipe");
 
-        stepAdapter = new StepAdapter(this, R.layout.step_row, steps);
+        stepAdapter = new StepAdapter(this, R.layout.step_row, recipe.getStepsList());
         stepsListView.setAdapter(stepAdapter);
         stepsListView.setOnItemClickListener(this);
 
 
     }
 
-    public void chargeStepsRecipe(int recipeId){
-        switch (recipeId){
-            case 1: {
-                steps.add("Step1");
-                steps.add("Step2");
-                steps.add("Step3");
-                steps.add("Step4");
-                steps.add("Step5");
-                break;
-            }
-            case 2: {
-                steps.add("Step01");
-                steps.add("Step02");
-                steps.add("Step03");
-                steps.add("Step04");
-                steps.add("Step05");
-                steps.add("Step06");
-                break;
-            }
-            default: {
-                steps.add("default Step01");
-                steps.add("default Step02");
-                steps.add("default Step03");
-                steps.add("default Step04");
-                steps.add("default Step05");
-                steps.add("default Step06");
-                break;
-            }
-        }
-    }
-
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        MessageDialog.show(parent.getContext(), "Step onItemClickListener", "Step recipe info: ", position, id);
+        //MessageDialog.show(parent.getContext(), "Step onItemClickListener", "Step recipe info: ", position, id);
+        Intent intent  = new Intent(parent.getContext(), StepTabbedActivity.class);
+        intent.putExtra("recipe", (Serializable) recipe);
+        intent.putExtra("positionStep", position);
+        startActivity(intent);
     }
 }

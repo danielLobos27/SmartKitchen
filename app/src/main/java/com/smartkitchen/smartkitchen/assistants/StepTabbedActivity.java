@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 
 import android.widget.TextView;
 
+import com.smartkitchen.smartkitchen.EDA.Recipe;
 import com.smartkitchen.smartkitchen.R;
 
 public class StepTabbedActivity extends AppCompatActivity {
@@ -37,10 +38,17 @@ public class StepTabbedActivity extends AppCompatActivity {
      */
     private ViewPager mViewPager;
 
+    private Recipe recipe;
+    private int positionStep;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_step_tabbed);
+
+        recipe = (Recipe) getIntent().getSerializableExtra("recipe");
+        positionStep = getIntent().getIntExtra("positionStep", 0);
+
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -51,13 +59,15 @@ public class StepTabbedActivity extends AppCompatActivity {
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
+        mViewPager.setCurrentItem(positionStep);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "Inicio Receta", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
+                mViewPager.setCurrentItem(0);
             }
         });
 
@@ -141,7 +151,7 @@ public class StepTabbedActivity extends AppCompatActivity {
         @Override
         public int getCount() {
             // Show 3 total pages.
-            return 3;
+            return recipe.getStepsList().size();
         }
     }
 }

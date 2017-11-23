@@ -12,13 +12,16 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.smartkitchen.smartkitchen.EDA.Step;
 import com.smartkitchen.smartkitchen.R;
+
+import org.w3c.dom.Text;
 
 import java.util.List;
 
-public class StepAdapter extends ArrayAdapter<String> {
+    public class StepAdapter extends ArrayAdapter<Step> {
 
-    public StepAdapter(Context context, int resource, List<String> objects) {
+    public StepAdapter(Context context, int resource, List<Step> objects) {
         super(context, resource, objects);
     }
 
@@ -33,10 +36,14 @@ public class StepAdapter extends ArrayAdapter<String> {
         }
 
         ImageView perfilImageView = (ImageView) fila.findViewById(R.id.step_image);
-        TextView mailImageView = (TextView) fila.findViewById(R.id.step_text);
+        TextView stepTitle = (TextView) fila.findViewById(R.id.step_title);
+        TextView stepText = (TextView) fila.findViewById(R.id.step_text);
 
-        String correo = getItem(position);
-        mailImageView.setText(correo);
+
+        Step step = getItem(position);
+        stepTitle.setText(step.getTitle());
+        stepText.setText(step.getStepRecipe());
+
 
         //String hash = md5(correo);
 
