@@ -8,6 +8,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -240,8 +241,6 @@ public class ListarComidasFragment extends Fragment {
             textView.setText(misComidas.comida);
             textView1.setText(misComidas.calorias);
             textView2.setText(misComidas.tiempoPreparacion);
-
-
 
             imageView.setImageResource(misComidas.imagenComida);
 
