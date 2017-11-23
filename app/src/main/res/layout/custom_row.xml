@@ -7,16 +7,42 @@
 
     <ImageView
         android:id="@+id/comidaImageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
         android:src="@android:drawable/btn_star"
         android:layout_gravity="center_vertical"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/nombreComidaTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_gravity="center_vertical"/>
+        <TextView
+            android:id="@+id/nombreComidaTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:textSize="20sp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"/>
+        <TextView
+            android:id="@+id/cantidadCaloriasTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="20dp"/>
+            <!--android:layout_marginLeft="200dp"
+            android:layout_marginTop="50dp"-->
+        <TextView
+            android:id="@+id/tiempoDePreparacionTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            />
+            <!--android:layout_marginLeft="200dp"-->
+
+    </RelativeLayout>
+
 
 </LinearLayout>
