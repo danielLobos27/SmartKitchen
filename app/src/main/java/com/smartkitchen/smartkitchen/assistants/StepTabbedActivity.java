@@ -16,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,9 +42,16 @@ public class StepTabbedActivity extends AppCompatActivity {
      * The {@link ViewPager} that will host the section contents.
      */
     private ViewPager mViewPager;
+<<<<<<< HEAD
     private SpeechRecognizerManager mSpeechManager;
     private Recipe recipe;
     private int positionStep;
+=======
+
+    private static Recipe recipe;
+    private static int positionStep;
+
+>>>>>>> develop
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +60,6 @@ public class StepTabbedActivity extends AppCompatActivity {
 
         recipe = (Recipe) getIntent().getSerializableExtra("recipe");
         positionStep = getIntent().getIntExtra("positionStep", 0);
-
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -172,8 +179,20 @@ public class StepTabbedActivity extends AppCompatActivity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_step_tabbed, container, false);
-            TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-            textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
+            //TextView textView = (TextView) rootView.findViewById(R.id.section_label);
+            //textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
+
+            TextView stepTitle = (TextView) rootView.findViewById(R.id.step_title);
+            TextView stepText = (TextView) rootView.findViewById(R.id.step_text);
+            ImageView stepImage = (ImageView) rootView.findViewById(R.id.step_image);
+
+            //Toast.makeText(getContext(),"positionStep: "+ positionStep, Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(),"title: "+ recipe.getStepsList().get(positionStep).getTitle(), Toast.LENGTH_SHORT).show();
+
+            stepTitle.setText(recipe.getStepsList().get(positionStep).getTitle());
+            stepText.setText(recipe.getStepsList().get(positionStep).getStepRecipe());
+            stepImage.setImageResource(recipe.getStepsList().get(positionStep).getImagen());
+
             return rootView;
         }
     }
@@ -192,7 +211,17 @@ public class StepTabbedActivity extends AppCompatActivity {
         public Fragment getItem(int position) {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
+<<<<<<< HEAD
             positionStep =position;
+=======
+            positionStep = position - 1;
+            //Toast.makeText(getApplicationContext(),"position: "+position, Toast.LENGTH_SHORT).show();
+
+            //stepTitle.setText(recipe.getStepsList().get(0).getTitle());
+            //stepText.setText(recipe.getStepsList().get(0).getStepRecipe());
+            //stepImage.setImageResource(recipe.getStepsList().get(0).getImagen());
+
+>>>>>>> develop
             return PlaceholderFragment.newInstance(position + 1);
         }
 
