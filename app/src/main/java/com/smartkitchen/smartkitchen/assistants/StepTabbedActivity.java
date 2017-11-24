@@ -22,6 +22,9 @@ import android.widget.Toast;
 
 import com.smartkitchen.smartkitchen.EDA.Recipe;
 import com.smartkitchen.smartkitchen.R;
+import com.smartkitchen.smartkitchen.SpeechRecognition.SpeechRecognizerManager;
+
+import java.util.ArrayList;
 
 public class StepTabbedActivity extends AppCompatActivity {
 
@@ -39,10 +42,16 @@ public class StepTabbedActivity extends AppCompatActivity {
      * The {@link ViewPager} that will host the section contents.
      */
     private ViewPager mViewPager;
+<<<<<<< HEAD
+    private SpeechRecognizerManager mSpeechManager;
+    private Recipe recipe;
+    private int positionStep;
+=======
 
     private static Recipe recipe;
     private static int positionStep;
 
+>>>>>>> develop
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +66,7 @@ public class StepTabbedActivity extends AppCompatActivity {
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+        initSpeechRecognition();
 
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
@@ -75,6 +85,48 @@ public class StepTabbedActivity extends AppCompatActivity {
 
     }
 
+    public void initSpeechRecognition(){
+        if(mSpeechManager==null)
+        {
+            SetSpeechListener();
+            mSpeechManager.mute(false);
+        }
+    }
+
+    private void SetSpeechListener() {
+        mSpeechManager=new SpeechRecognizerManager(this, new SpeechRecognizerManager.onResultsReady() {
+            @Override
+            public void onResults(ArrayList<String> results) {
+
+                if(results!=null && results.size()>0) {
+                    StringBuilder sb = new StringBuilder();
+                    if (results.size() > 5){
+                        results = (ArrayList<String>) results.subList(0, 1);
+                    }
+                    //for (String result : results){
+                    String result = results.get(0);
+                        Toast.makeText(getApplicationContext(),result,Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(),""+positionStep,Toast.LENGTH_SHORT).show();
+                        switch (result){
+                            case "siguiente":
+                                if(recipe.getStepsList().size()>=positionStep+1)
+
+                                    mViewPager.setCurrentItem(positionStep+1);
+                                    //initSpeechRecognition();
+                                break;
+                            case  "atrás":
+                                if(0<=positionStep-1)
+                                    mViewPager.setCurrentItem(positionStep-1);
+                                    //initSpeechRecognition();
+                                break;
+                            default:
+                                break;
+                        }
+                   // }
+                }
+            }
+        });
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -159,6 +211,9 @@ public class StepTabbedActivity extends AppCompatActivity {
         public Fragment getItem(int position) {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
+<<<<<<< HEAD
+            positionStep =position;
+=======
             positionStep = position - 1;
             //Toast.makeText(getApplicationContext(),"position: "+position, Toast.LENGTH_SHORT).show();
 
@@ -166,6 +221,7 @@ public class StepTabbedActivity extends AppCompatActivity {
             //stepText.setText(recipe.getStepsList().get(0).getStepRecipe());
             //stepImage.setImageResource(recipe.getStepsList().get(0).getImagen());
 
+>>>>>>> develop
             return PlaceholderFragment.newInstance(position + 1);
         }
 
