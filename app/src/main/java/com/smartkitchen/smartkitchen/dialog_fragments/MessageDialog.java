@@ -28,7 +28,6 @@ public class MessageDialog{
                     }
                 }).show();
     }
-
     public static void showInstructionDialog(Context context){
         new AlertDialog.Builder(context)
                 .setTitle(R.string.instruction_title_dialog)

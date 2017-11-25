@@ -41,6 +41,7 @@
     <!-- welcome text -->
     <string name="welcome_text">¡SmartKitchen tu nueva forma de cocinar!</string>
 
+<<<<<<< HEAD
     <!-- for Smart Assistant -->
     <string name="recipe_tittle">Recipe title</string>
     <string name="title_activity_step_tabbed">StepTabbedActivity</string>
@@ -53,4 +54,6 @@
     <!-- for instruction diaglog -->
     <string name="instruction_title_dialog">Instrucciones de uso de SmartKitchen</string>
     <string name="instruction_message_dialog">¡Bienvenido a su asistente de cocina! Mientras cocina diga la palabra [siguiente] o [atrás] para despalzarse entre los pasos. SmartKitchen soporta conversaciones detectando las palabras.</string>
+=======
+>>>>>>> master
 </resources>

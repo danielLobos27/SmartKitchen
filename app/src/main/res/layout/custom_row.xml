@@ -7,10 +7,11 @@
 
     <ImageView
         android:id="@+id/comidaImageView"
-        android:layout_width="160dp"
-        android:layout_height="160dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:src="@android:drawable/btn_star"
         android:layout_gravity="center_vertical"/>
+<<<<<<< HEAD
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -41,6 +42,14 @@
             />
 
     </RelativeLayout>
+=======
+>>>>>>> master
 
+    <TextView
+        android:id="@+id/nombreComidaTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_gravity="center_vertical"/>
 
 </LinearLayout>

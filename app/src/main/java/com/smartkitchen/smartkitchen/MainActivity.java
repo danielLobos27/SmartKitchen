@@ -1,6 +1,7 @@
-package com.smartkitchen.smartkitchen.main;
+package com.smartkitchen.smartkitchen;
 
 import android.net.Uri;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -9,7 +10,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
-import com.smartkitchen.smartkitchen.R;
 import com.smartkitchen.smartkitchen.dialog_fragments.MessageDialog;
 import com.smartkitchen.smartkitchen.fragments.AderezoFragment;
 import com.smartkitchen.smartkitchen.fragments.ListaBuscarRecetasFragment;
