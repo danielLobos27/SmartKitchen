@@ -98,26 +98,27 @@ public class StepTabbedActivity extends AppCompatActivity implements ViewPager.O
                     if (results.size() > 5){
                         results = (ArrayList<String>) results.subList(0, 1);
                     }
-                    //for (String result : results){
-                    String result = results.get(0);
-                        Toast.makeText(getApplicationContext(),result,Toast.LENGTH_SHORT).show();
-                        Toast.makeText(getApplicationContext(),""+positionStep,Toast.LENGTH_SHORT).show();
-                        switch (result){
-                            case "siguiente":
-                                if(recipe.getStepsList().size()>=positionStep+1)
 
-                                    mViewPager.setCurrentItem(positionStep+1);
-                                    //initSpeechRecognition();
+                    String result = results.get(0);
+                    String[] tokens = result.split("\\s");
+                    for(int i = 0; i < tokens.length; i++) {
+                        Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getApplicationContext(),""+positionStep,Toast.LENGTH_SHORT).show();
+
+                        switch (tokens[i]) {
+                            case "siguiente":
+                                if (recipe.getStepsList().size() >= positionStep + 1)
+                                    mViewPager.setCurrentItem(positionStep + 1);
                                 break;
-                            case  "atrás":
-                                if(0<=positionStep-1)
-                                    mViewPager.setCurrentItem(positionStep-1);
-                                    //initSpeechRecognition();
+                            case "atrás":
+                                if (0 <= positionStep - 1)
+                                    mViewPager.setCurrentItem(positionStep - 1);
                                 break;
                             default:
                                 break;
                         }
-                   // }
+                    }
+
                 }
             }
         });

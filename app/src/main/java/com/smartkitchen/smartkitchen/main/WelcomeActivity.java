@@ -10,6 +10,7 @@ import com.smartkitchen.smartkitchen.EDA.Recipe;
 import com.smartkitchen.smartkitchen.HardCodeGenerator.RecipeGenerator;
 import com.smartkitchen.smartkitchen.R;
 import com.smartkitchen.smartkitchen.assistants.SmartAssistantActivity;
+import com.smartkitchen.smartkitchen.dialog_fragments.MessageDialog;
 import com.smartkitchen.smartkitchen.services.SmartKitchenService;
 
 import java.io.Serializable;
@@ -39,9 +40,10 @@ public class WelcomeActivity extends AppCompatActivity implements View.OnClickLi
                 startActivity(intent);
                 break;
             case R.id.register_welcome:
-                intent = new Intent(WelcomeActivity.this, MainActivity.class);
+                //intent = new Intent(WelcomeActivity.this, MainActivity.class);
                 //TODO service background
-                startActivity(intent);
+                //startActivity(intent);
+                MessageDialog.show(WelcomeActivity.this);
                 break;
             default:
                 break;
