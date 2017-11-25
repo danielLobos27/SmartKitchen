@@ -21,8 +21,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.smartkitchen.smartkitchen.EDA.Recipe;
+import com.smartkitchen.smartkitchen.EDA.Step;
 import com.smartkitchen.smartkitchen.R;
 import com.smartkitchen.smartkitchen.SpeechRecognition.SpeechRecognizerManager;
+import com.smartkitchen.smartkitchen.dialog_fragments.MessageDialog;
 
 import java.util.ArrayList;
 
@@ -67,7 +69,7 @@ public class StepTabbedActivity extends AppCompatActivity implements ViewPager.O
         mViewPager.addOnPageChangeListener(this);
         mViewPager.setCurrentItem(positionStep);
 
-        Toast.makeText(getApplicationContext(),"position: "+ positionStep, Toast.LENGTH_SHORT).show();
+        MessageDialog.showInstructionDialog(StepTabbedActivity.this);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -102,7 +104,7 @@ public class StepTabbedActivity extends AppCompatActivity implements ViewPager.O
                     String result = results.get(0);
                     String[] tokens = result.split("\\s");
                     for(int i = 0; i < tokens.length; i++) {
-                        Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
                         //Toast.makeText(getApplicationContext(),""+positionStep,Toast.LENGTH_SHORT).show();
 
                         switch (tokens[i]) {
@@ -159,7 +161,7 @@ public class StepTabbedActivity extends AppCompatActivity implements ViewPager.O
     public void onPageSelected(int position) {
         positionStep = position;
         View rootView = mViewPager.getRootView();
-        Toast.makeText(getApplicationContext(),"position: "+ position, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(),"position: "+ position, Toast.LENGTH_SHORT).show();
     }
 
     @Override
