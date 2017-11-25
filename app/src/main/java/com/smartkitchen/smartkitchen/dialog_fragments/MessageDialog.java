@@ -29,6 +29,19 @@ public class MessageDialog{
                 }).show();
     }
 
+    public static void showInstructionDialog(Context context){
+        new AlertDialog.Builder(context)
+                .setTitle(R.string.instruction_title_dialog)
+                .setMessage(R.string.instruction_message_dialog)
+                .setCancelable(false)
+                .setPositiveButton(R.string.accept_button, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Whatever...
+                    }
+                }).show();
+    }
+
     public static void show(Context context, String title, String message,  int position, long id){
         new AlertDialog.Builder(context)
                 .setTitle(title)

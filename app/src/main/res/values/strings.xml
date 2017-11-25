@@ -50,4 +50,7 @@
     <string name="step_title">Step title</string>
     <string name="step_text">Step text Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque congue, urna vitae molestie aliquet, elit orci porta nunc, non blandit nisl erat sit amet arcu. Etiam lacinia scelerisque elit in ornare. </string>
 
+    <!-- for instruction diaglog -->
+    <string name="instruction_title_dialog">Instrucciones de uso de SmartKitchen</string>
+    <string name="instruction_message_dialog">¡Bienvenido a su asistente de cocina! Mientras cocina diga la palabra [siguiente] o [atrás] para despalzarse entre los pasos. SmartKitchen soporta conversaciones detectando las palabras.</string>
 </resources>
